@@ -1,0 +1,31 @@
+<h1>Blog Details</h1>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @blog.author.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @blog.content %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @blog.status.capitalize %>
+</p>
+
+<% if @blog.published_date.present? %>
+  <p>
+    <strong>Published Date:</strong>
+    <%= @blog.published_date.strftime("%B %d, %Y") %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>

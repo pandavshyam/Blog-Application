@@ -1,0 +1,29 @@
+<h1>My Blogs</h1>
+
+<%= link_to 'New Blog', new_blog_path, class: 'button' %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Status</th>
+      <th>Published Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= blog.title %></td>
+        <td><%= blog.author.try(:email) %></td>
+        <td><%= blog.status.capitalize %></td>
+        <td><%= blog.published_date.present? ? blog.published_date.strftime("%B %d, %Y") : "N/A" %></td>
+        <td><%= link_to 'Show', blog_path(blog) %></td>
+        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+        <td><%= link_to 'Destroy', blog, data: { 'turbo-method': :delete } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
