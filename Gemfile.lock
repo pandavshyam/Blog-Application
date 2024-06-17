@@ -88,6 +88,7 @@ GEM
       popper_js (>= 2.11.8, < 3)
     bson (5.0.0)
     builder (3.3.0)
+    coderay (1.1.3)
     concurrent-ruby (1.3.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -130,6 +131,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
     minitest (5.23.1)
@@ -158,7 +160,13 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (6.5.0)
+    pagy_mongoid_cursor (0.2.0)
+      mongoid
+      pagy (>= 6, < 7)
     popper_js (2.11.8)
+    pry (0.14.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     psych (5.1.2)
       stringio
     puma (6.4.2)
@@ -241,10 +249,16 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
+    stimulus-rails (1.3.3)
+      railties (>= 6.0.0)
     stringio (3.1.1)
     thor (1.3.1)
     tilt (2.3.0)
     timeout (0.4.1)
+    turbo-rails (2.0.5)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
@@ -273,11 +287,15 @@ DEPENDENCIES
   jbuilder
   mongoid (~> 9.0)
   pagy (~> 6.5)
+  pagy_mongoid_cursor
+  pry (~> 0.14.2)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.4)
   rspec-rails (~> 6.1.0)
   sassc-rails
   sprockets-rails
+  stimulus-rails
+  turbo-rails
   tzinfo-data
   web-console
 

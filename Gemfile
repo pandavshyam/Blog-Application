@@ -40,10 +40,14 @@ gem 'devise', '~> 4.9', '>= 4.9.4'
 gem 'bootstrap', '~> 5.3', '>= 5.3.3'
 gem 'sassc-rails'
 gem 'pagy', '~> 6.5'
+gem 'pagy_mongoid_cursor'
+gem "turbo-rails"
+gem "stimulus-rails"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'pry', '~> 0.14.2'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
