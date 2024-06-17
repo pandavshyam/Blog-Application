@@ -38,6 +38,8 @@ end
 gem 'mongoid', '~> 9.0'
 gem 'devise', '~> 4.9', '>= 4.9.4'
 gem 'bootstrap', '~> 5.3', '>= 5.3.3'
+gem 'sassc-rails'
+gem 'pagy', '~> 6.5'
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
