@@ -29,8 +29,8 @@ Make sure you have the following software installed:
 1. **Clone the repository:**
 
 ```sh
-git clone https://github.com/shyam/blog-application.git
-cd blog-application
+git clone https://github.com/pandavshyam/Blog-Application
+cd Blog-Application
 ```
 
 2. **Install dependencies:**
