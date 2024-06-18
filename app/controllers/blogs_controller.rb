@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   # GET /blogs
@@ -52,7 +52,7 @@ class BlogsController < ApplicationController
   private
 
   def set_blog
-    @blog = current_user.blogs.find(params[:id])
+    @blog = Blog.find(params[:id])
   end
 
   def blog_params

@@ -1,29 +1,29 @@
-<h1>My Blogs</h1>
-
-<%= link_to 'New Blog', new_blog_path, class: 'button' %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Status</th>
-      <th>Published Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="container">
+  <% if user_signed_in? %>
+    <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary mb-3' %>
+  <% end %>
+  <div class="row">
     <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.title %></td>
-        <td><%= blog.author.try(:email) %></td>
-        <td><%= blog.status.capitalize %></td>
-        <td><%= blog.published_date.present? ? blog.published_date.strftime("%B %d, %Y") : "N/A" %></td>
-        <td><%= link_to 'Show', blog_path(blog) %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-        <td><%= link_to 'Destroy', blog, data: { 'turbo-method': :delete } %></td>
-      </tr>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">By <%= blog.author.try(:email) %></h6>
+            <p class="card-text"><%= truncate(blog.content, length: 100) %></p>
+            <p class="card-text">
+              <% if current_user.present? && current_user.id.to_s == blog.author_id.to_s %>
+                <strong>Status:</strong> <%= blog.status.capitalize %><br>
+              <% end %>
+              <% if blog.published_date.present? %>
+                <strong>Published Date:</strong> <%= blog.published_date.strftime("%B %d, %Y") %>
+              <% else %>
+                <strong>Published Date:</strong> N/A
+              <% end %>
+            </p>
+            <%= link_to 'Read More', blog_path(blog), class: 'btn btn-secondary btn-sm' %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>

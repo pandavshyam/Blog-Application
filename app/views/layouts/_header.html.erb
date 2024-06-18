@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Blogs</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <% if user_signed_in? %>
+            <a class="nav-link active" aria-current="page" href="#">My Blogs</a>
+          <% end %>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <% if user_signed_in? %>
+          <%= link_to 'Logout', destroy_user_session_path, data: { "turbo-method": :delete }, class: "btn btn-outline-light me-2" %>
+        <% else %>
+          <%= link_to 'Login', new_user_session_path, class: "btn btn-outline-light me-2" %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: "btn btn-outline-light me-2" %>
+        <% end %>
+      </form>
+    </div>
+  </div>
+</nav>
