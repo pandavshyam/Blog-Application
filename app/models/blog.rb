@@ -3,6 +3,7 @@ class Blog
   include Mongoid::Timestamps
 
   belongs_to :author, class_name: 'User', inverse_of: :blogs
+  has_many :comments
 
   field :title, type: String
   field :content, type: String
