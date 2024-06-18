@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_blog, only: %i[show edit update destroy]
 
   # GET /blogs
   def index
@@ -18,6 +20,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1
   def show
+    # For creating new comment on blog
     @comment = @blog.comments.build
 
     respond_to do |format|
@@ -82,10 +85,16 @@ class BlogsController < ApplicationController
   private
 
   def set_blog
-    @blog = Blog.find(params[:id])
+    @blog = Blog.where(id: params[:id]).first
+    if @blog.nil?
+      respond_to do |format|
+        format.html { redirect_to blogs_url, notice: 'Invalid blog id' }
+        format.json { render json: { message: 'Invalid blog id' } }
+      end and return
+    end
   end
 
   def blog_params
-    params.require(:blog).permit(:title, :content, :status, :asset)
+    params.require(:blog).permit(:title, :content, :status)
   end
 end
