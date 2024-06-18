@@ -30,6 +30,12 @@
         </p>
       <% end %>
 
+      <p class="card-text">
+        <% if @blog.asset.present? %>
+          <%= image_tag @blog.asset.url, class: "img-fluid rounded mb-3", style: "max-width: 400px; max-height: 400px;", alt: @blog.title %>
+        <% end %>
+      </p>
+
       <% if current_user.present? && current_user.id.to_s == @blog.author.id.to_s %>
         <%= link_to 'Edit', edit_blog_path(@blog), class: "btn btn-primary" %> |
       <% end %>

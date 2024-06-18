@@ -43,6 +43,8 @@ gem 'pagy', '~> 6.5'
 gem 'pagy_mongoid_cursor'
 gem "turbo-rails"
 gem "stimulus-rails"
+gem 'carrierwave', '~> 3.0'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]

@@ -10,19 +10,23 @@
     </div>
   <% end %>
 
-  <div class="mb-3">
+  <div class="mb-3 form-group">
     <%= form.label :title, class: "form-label" %>
     <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3 form-group">
     <%= form.label :content, class: "form-label" %>
     <%= form.text_area :content, class: "form-control" %>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3 form-group">
     <%= form.label :status, class: "form-label" %>
     <%= form.select :status, [['Draft', 'draft'], ['Published', 'published']], {}, class: "form-select" %>
+  </div>
+
+  <div class="mb-3 form-group">
+    <%= form.file_field :asset, class: "form-control" %>
   </div>
 
   <div class="actions mb-3">

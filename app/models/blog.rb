@@ -9,6 +9,9 @@ class Blog
   field :content, type: String
   field :status, type: String, default: 'draft'
   field :published_date, type: DateTime
+  field :asset, type: String
+
+  mount_uploader :asset, AssetUploader
 
   validates :title, :author_id, :content, presence: true
   validates :status, inclusion: { in: ['draft', 'published'] }
