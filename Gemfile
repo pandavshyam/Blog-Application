@@ -35,6 +35,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.1.0'
   gem 'factory_bot_rails'
   gem 'database_cleaner-mongoid', '~> 2.0', '>= 2.0.1'
+  gem 'rails-controller-testing'
 end
 
 gem 'mongoid', '~> 9.0'
