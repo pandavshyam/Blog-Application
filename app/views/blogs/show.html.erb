@@ -1,31 +1,39 @@
-<h1>Blog Details</h1>
+<div class="container mt-3">
+  <h1>Blog Details</h1>
 
-<p>
-  <strong>Title:</strong>
-  <%= @blog.title %>
-</p>
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text">
+        <strong>Title:</strong>
+        <%= @blog.title %>
+      </p>
 
-<p>
-  <strong>Author:</strong>
-  <%= @blog.author.name %>
-</p>
+      <p class="card-text">
+        <strong>Author:</strong>
+        <%= @blog.author.email %>
+      </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @blog.content %>
-</p>
+      <p class="card-text">
+        <strong>Content:</strong>
+        <%= @blog.content %>
+      </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @blog.status.capitalize %>
-</p>
+      <p class="card-text">
+        <strong>Status:</strong>
+        <%= @blog.status.capitalize %>
+      </p>
 
-<% if @blog.published_date.present? %>
-  <p>
-    <strong>Published Date:</strong>
-    <%= @blog.published_date.strftime("%B %d, %Y") %>
-  </p>
-<% end %>
+      <% if @blog.published_date.present? %>
+        <p class="card-text">
+          <strong>Published Date:</strong>
+          <%= @blog.published_date.strftime("%B %d, %Y") %>
+        </p>
+      <% end %>
 
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+      <% if current_user.present? && current_user.id.to_s == @blog.author.id.to_s %>
+        <%= link_to 'Edit', edit_blog_path(@blog), class: "btn btn-primary" %> |
+      <% end %>
+      <%= link_to 'Back', blogs_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>

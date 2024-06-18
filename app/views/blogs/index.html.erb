@@ -1,19 +1,16 @@
 <div class="container">
   <% if user_signed_in? %>
-    <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary mb-3' %>
+    <%= link_to 'New Blog', new_blog_path, class: 'btn btn-primary mb-3 mt-3' %>
   <% end %>
-  <div class="row">
+  <div class="row mt-3">
     <% @blogs.each do |blog| %>
       <div class="col-md-4 mb-4">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><%= blog.title %></h5>
             <h6 class="card-subtitle mb-2 text-muted">By <%= blog.author.try(:email) %></h6>
-            <p class="card-text"><%= truncate(blog.content, length: 100) %></p>
+            <p class="card-text"><%= truncate(blog.content, length: 50) %></p>
             <p class="card-text">
-              <% if current_user.present? && current_user.id.to_s == blog.author_id.to_s %>
-                <strong>Status:</strong> <%= blog.status.capitalize %><br>
-              <% end %>
               <% if blog.published_date.present? %>
                 <strong>Published Date:</strong> <%= blog.published_date.strftime("%B %d, %Y") %>
               <% else %>
@@ -21,9 +18,13 @@
               <% end %>
             </p>
             <%= link_to 'Read More', blog_path(blog), class: 'btn btn-secondary btn-sm' %>
+            <% if current_user.present? && current_user.id.to_s == blog.author.id.to_s && blog.status == 'draft' %>
+              <%= link_to 'Publish', blog_path(blog, blog: { status: 'published' }), data: { "turbo-method": :patch }, class: 'btn btn-warning btn-sm' %>
+            <% end %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
+  <%== pagy_bootstrap_nav(@pagy) %>
 </div>

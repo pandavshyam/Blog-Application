@@ -9,7 +9,7 @@ class Blog
   field :status, type: String, default: 'draft'
   field :published_date, type: DateTime
 
-  validates :title, :author_id, presence: true
+  validates :title, :author_id, :content, presence: true
   validates :status, inclusion: { in: ['draft', 'published'] }
 
   before_save :set_published_date

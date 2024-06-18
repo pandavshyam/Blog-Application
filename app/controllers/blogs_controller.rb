@@ -6,9 +6,9 @@ class BlogsController < ApplicationController
   def index
     @pagy, @blogs =
       if params[:my_posts_only].present? && current_user.present?
-        pagy_cursor(Blog.desc(:updated_at).where(author_id: current_user.id))
+        pagy_cursor(Blog.where(author_id: current_user.id).includes(:author))
       else
-        pagy_cursor(Blog.where(status: 'published').desc(:updated_at))
+        pagy_cursor(Blog.where(status: 'published').includes(:author))
       end
   end
 
@@ -27,7 +27,7 @@ class BlogsController < ApplicationController
     if @blog.save
       redirect_to @blog, notice: 'Blog was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -39,7 +39,7 @@ class BlogsController < ApplicationController
     if @blog.update(blog_params)
       redirect_to @blog, notice: 'Blog was successfully updated.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

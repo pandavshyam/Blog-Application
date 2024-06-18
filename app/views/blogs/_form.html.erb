@@ -1,32 +1,31 @@
 <%= form_with(model: blog, local: true) do |form| %>
   <% if blog.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
-
-      <ul>
+      <ul class="list-group">
         <% blog.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="list-group-item list-group-item-danger"><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="mb-3">
+    <%= form.label :content, class: "form-label" %>
+    <%= form.text_area :content, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, [['Draft', 'draft'], ['Published', 'published']] %>
+  <div class="mb-3">
+    <%= form.label :status, class: "form-label" %>
+    <%= form.select :status, [['Draft', 'draft'], ['Published', 'published']], {}, class: "form-select" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions mb-3">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
