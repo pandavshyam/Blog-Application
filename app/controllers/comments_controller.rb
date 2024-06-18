@@ -1,8 +1,13 @@
 class CommentsController < ApplicationController
   def create
     @blog = Blog.where(id: params[:blog_id]).first
-    @comment = @blog.comments.create(comment_params)
-    redirect_to blog_path(@blog)
+    @comment = @blog.comments.build(comment_params)
+
+    if @comment.save
+      redirect_to blog_path(@blog), notice: 'Comment was successfully created.'
+    else
+      render 'blogs/show', status: :unprocessable_entity
+    end
   end
 
   private

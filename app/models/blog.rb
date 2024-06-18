@@ -14,6 +14,8 @@ class Blog
   mount_uploader :asset, AssetUploader
 
   validates :title, :author_id, :content, presence: true
+  validates :title, length: { maximum: 255 }
+  validates :content, length: { maximum: 2056 }
   validates :status, inclusion: { in: ['draft', 'published'] }
 
   before_save :set_published_date

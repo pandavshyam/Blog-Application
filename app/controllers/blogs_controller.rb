@@ -13,7 +13,9 @@ class BlogsController < ApplicationController
   end
 
   # GET /blogs/1
-  def show; end
+  def show
+    @comment = @blog.comments.build
+  end
 
   # GET /blogs/new
   def new

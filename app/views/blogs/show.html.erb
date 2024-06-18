@@ -50,7 +50,17 @@
     <div class="card mt-4">
       <div class="card-body">
         <h4 class="card-title">New Comment</h4>
-        <%= form_with(model: [@blog, @blog.comments.build], local: true) do |form| %>
+        <%= form_with(model: [@blog, @comment], local: true) do |form| %>
+          <% if @comment.errors.any? %>
+            <div class="alert alert-danger">
+              <h6>Errors:</h6>
+              <ul>
+                <% @comment.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
           <div class="mb-3">
             <%= form.label :user_name, class: "form-label" %>
             <%= form.text_field :user_name, class: "form-control" %>

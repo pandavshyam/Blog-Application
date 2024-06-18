@@ -8,4 +8,6 @@ class Comment
   field :body, type: String
 
   validates :user_name, :body, presence: true
+  validates :user_name, length: { maximum: 255 }
+  validates :body, length: { maximum: 2056 }
 end

@@ -1,3 +1,4 @@
+<% if comment.created_at.present? %>
 <div class="comment card mb-3">
   <div class="card-body">
     <div class="d-flex justify-content-between align-items-center">
@@ -7,3 +8,4 @@
     <p class="card-text"><%= comment.body %></p>
   </div>
 </div>
+<% end %>
